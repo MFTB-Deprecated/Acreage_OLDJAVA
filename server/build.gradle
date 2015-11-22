@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version = '0.0.0'
+
+repositories 
+{
+	mavenCentral()
+}
+
+dependencies
+{
+	compile 'com.google.guava:guava:18.0'
+	compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'io.netty:netty-all:4.0.33.Final'
+}
