@@ -1,6 +1,5 @@
-package blue.made.acreage.server.game;
+package blue.made.acreage.server.world;
 
-import blue.made.acreage.server.game.world.World;
 import blue.made.acreage.server.net.ServerPacket;
 
 public class Game
