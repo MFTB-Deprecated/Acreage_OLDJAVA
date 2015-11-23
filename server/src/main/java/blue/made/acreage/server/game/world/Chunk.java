@@ -2,13 +2,14 @@ package blue.made.acreage.server.game.world;
 
 public class Chunk
 {
+	public final World world;
 	private byte count = 0;
 	
 	private TileObject[] tiles = new TileObject[64];
 	
-	public Chunk(int x, int y)
+	public Chunk(World world, int x, int y)
 	{
-		
+		this.world = world;
 	}
 	
 	private int clip(int x)
@@ -32,7 +33,10 @@ public class Chunk
 		{
 			this.tiles[id].onReplaced(tile);
 		}
+		TileObject old = this.tiles[id];
 		this.tiles[id] = tile;
+		tile.world = this.world;
+		tile.onPlaced(old);
 	}
 	
 	public TileObject getTile(int x, int y)
@@ -40,15 +44,18 @@ public class Chunk
 		return this.tiles[this.id(x, y)];
 	}
 	
-	public void removeTile(int x, int y)
+	public TileObject removeTile(int x, int y)
 	{
 		int id = this.id(x, y);
-		if (this.tiles[id] != null)
+		TileObject out = this.tiles[id];
+		if (out != null)
 		{
-			this.tiles[id].onReplaced(null);
+			out.onReplaced(null);
 			this.count--;
 		}
+		this.tiles[id].world = null;
 		this.tiles[id] = null;
+		return out;
 	}
 	
 	public int count()

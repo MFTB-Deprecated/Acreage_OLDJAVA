@@ -1,13 +1,16 @@
 package blue.made.acreage.server.game.world;
 
-import blue.made.acreage.server.card.tile.ITile;
+import com.google.gson.JsonObject;
+
+import blue.made.acreage.server.card.tile.Tile;
 
 public class TileObject
 {
 	public World world;
 	public final int x;
 	public final int y;
-	private ITile tile;
+	public JsonObject extra = new JsonObject();
+	private Tile tile;
 	private boolean explored = false;
 	
 	public TileObject(int x, int y)
@@ -16,12 +19,12 @@ public class TileObject
 		this.y = y;
 	}
 	
-	public ITile getTile()
+	public Tile getTile()
 	{
 		return this.tile;
 	}
 	
-	public void setTile(ITile type)
+	public void setTile(Tile type)
 	{
 		this.tile = type;
 		if (this.world != null)
@@ -40,8 +43,28 @@ public class TileObject
 		this.explored = explored;
 	}
 	
+	public TileObject at(int x, int y)
+	{
+		TileObject out = new TileObject(x, y);
+		out.extra = this.extra;
+		out.tile = this.tile;
+		out.explored = this.explored;
+		return out;
+	}
+	
+	/**
+	 * (this.world is not null when this is called)
+	 */
 	public void onReplaced(TileObject with)
 	{
-		
+	
+	}
+	
+	/**
+	 * (this.world is not null when this is called)
+	 */
+	public void onPlaced(TileObject old)
+	{
+	
 	}
 }

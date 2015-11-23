@@ -2,9 +2,13 @@ package blue.made.acreage.server.game.world;
 
 import java.util.HashMap;
 
+import blue.made.acreage.server.game.world.gen.WorldGen;
+
 public class World
 {
 	private HashMap<Long, Chunk> chunks = new HashMap<>();
+	
+	public WorldGen gen;
 	
 	private long getChunkId(int x, int y)
 	{
@@ -24,7 +28,7 @@ public class World
 		Chunk chunk = this.chunks.get(chunkid);
 		if (chunk == null)
 		{
-			chunk = new Chunk(tile.x / 8, tile.y / 8);
+			chunk = new Chunk(this, tile.x / 8, tile.y / 8);
 			this.chunks.put(chunkid, chunk);
 		}
 		chunk.setTile(tile);
