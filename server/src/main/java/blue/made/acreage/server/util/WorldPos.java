@@ -10,4 +10,21 @@ public class WorldPos
 		this.x = x;
 		this.y = y;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return String.format("{%d, %d}", this.x, this.y);
+	}
+	
+	@Override
+	public boolean equals(Object other)
+	{
+		if (other instanceof WorldPos)
+		{
+			WorldPos pos = (WorldPos) other;
+			return pos.x == this.x && pos.y == this.y;
+		}
+		return false;
+	}
 }

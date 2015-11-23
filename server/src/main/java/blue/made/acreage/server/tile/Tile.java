@@ -9,6 +9,7 @@ public class Tile extends WorldGridObject
 {
 	public TileType type;
 	public boolean visible;
+	public boolean crumble;
 	
 	public Tile(World world, TileType type)
 	{
@@ -16,6 +17,12 @@ public class Tile extends WorldGridObject
 		this.type = type;
 	}
 	
+	/**
+	 * Changes/sets the position of this tile on the grid. If a tile already
+	 * exists at the given position, then that tile is replaced and its position
+	 * is set to null. Equivalent to calling
+	 * {@link World#setTile(WorldPos, Tile) World.setTile(to, this)}.
+	 */
 	@Override
 	public void setPos(WorldPos to)
 	{
