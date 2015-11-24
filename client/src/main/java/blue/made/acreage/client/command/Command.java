@@ -18,6 +18,7 @@ public abstract class Command
 		if (run != null)
 		{
 			run.accept(this);
+			return;
 		}
 		throw new IllegalArgumentException("No runner found for command \"" + this.name + "\"");
 	}
