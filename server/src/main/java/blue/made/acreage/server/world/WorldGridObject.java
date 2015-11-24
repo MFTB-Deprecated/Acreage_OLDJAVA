@@ -16,11 +16,15 @@ public class WorldGridObject
 		this.world = world;
 	}
 	
+	/**
+	 * @return The current position on the grid
+	 */
 	public WorldPos pos()
 	{
 		return this.pos;
 	}
 	
+	/** A utility form of {@link #setPos(WorldPos) */
 	public void setPos(int x, int y)
 	{
 		this.setPos(new WorldPos(x, y));

@@ -4,14 +4,21 @@ import blue.made.acreage.server.net.ServerPacket;
 
 public class Game
 {
-	private static Game instance;
+	public static Game instance;
 	
-	public static Game instance()
+	public Game()
 	{
-		return instance;
+		if (instance == null)
+		{
+			instance = this;
+		}
+		else
+		{
+			throw new IllegalStateException();
+		}
 	}
 	
-	public World world;
+	public World world = new World();
 	
 	public void sendToAllPlayers(ServerPacket packet)
 	{

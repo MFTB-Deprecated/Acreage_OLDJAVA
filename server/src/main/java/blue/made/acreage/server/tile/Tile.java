@@ -28,4 +28,10 @@ public class Tile extends WorldGridObject
 	{
 		this.world.setTile(to, this);
 	}
+	
+	@Override
+	public String toString()
+	{
+		return String.format("%s (%s) at %s", this.type, this.getClass(), this.pos());
+	}
 }
