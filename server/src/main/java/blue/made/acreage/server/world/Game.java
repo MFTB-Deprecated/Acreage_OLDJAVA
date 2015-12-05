@@ -1,7 +1,5 @@
 package blue.made.acreage.server.world;
 
-import blue.made.acreage.server.net.ServerPacket;
-
 public class Game
 {
 	public static Game instance;
@@ -19,9 +17,4 @@ public class Game
 	}
 	
 	public World world = new World();
-	
-	public void sendToAllPlayers(ServerPacket packet)
-	{
-		// TODO
-	}
 }

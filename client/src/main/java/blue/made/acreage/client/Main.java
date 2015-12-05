@@ -8,13 +8,29 @@ import java.util.Arrays;
 import blue.made.acreage.client.command.Command;
 import blue.made.acreage.client.command.Commands;
 import blue.made.acreage.client.command.ICommandBuilder;
+import blue.made.acreage.client.net.NetClient;
 
 public class Main
 {
 	public static void main(String[] args) throws IOException
 	{
-		System.out.println("Acreage Client Command Test");
+		System.out.println("Acreage Client Test");
 		System.out.println("(type \"help\" for a list of commands)");
+		System.out.printf("Connecting to [%s:%d]...%n", NetClient.HOST, NetClient.PORT);
+		NetClient.run();
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run()
+			{
+				System.out.println("Stopping...");
+				NetClient.stop();
+			}
+		});
+		if (NetClient.isRunning())
+		{
+			System.out.println("Connected");
+		}
+		
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		while (true)
 		{

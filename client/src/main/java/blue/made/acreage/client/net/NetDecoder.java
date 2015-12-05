@@ -10,7 +10,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ReplayingDecoder;
 
-public class NetworkDecoder extends ReplayingDecoder<Void>
+public class NetDecoder extends ReplayingDecoder<Void>
 {
 	public static Charset charset = Charset.forName("US-ASCII");
 	
