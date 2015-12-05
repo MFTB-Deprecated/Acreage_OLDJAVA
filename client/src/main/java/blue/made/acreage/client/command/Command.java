@@ -12,7 +12,7 @@ public abstract class Command
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void run()
+	public void run() throws Exception
 	{
 		Consumer<Command> run = (Consumer<Command>) Commands.runners.get(this.name);
 		if (run != null)

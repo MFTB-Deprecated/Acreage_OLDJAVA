@@ -21,6 +21,7 @@ public class Commands
 				System.out.println(e.getValue().info(e.getKey()));
 			}
 		} , "help");
+		register(new CommandPing.Builder(), "ping");
 	}
 	
 	public static <C extends Command> void register(ICommandBuilder builder, Consumer<C> runner, String... names)

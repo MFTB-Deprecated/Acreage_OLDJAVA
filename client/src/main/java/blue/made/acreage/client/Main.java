@@ -17,7 +17,7 @@ public class Main
 		System.out.println("Acreage Client Test");
 		System.out.println("(type \"help\" for a list of commands)");
 		System.out.printf("Connecting to [%s:%d]...%n", NetClient.HOST, NetClient.PORT);
-		NetClient.run();
+		NetClient.start();
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run()
@@ -26,10 +26,7 @@ public class Main
 				NetClient.stop();
 			}
 		});
-		if (NetClient.isRunning())
-		{
-			System.out.println("Connected");
-		}
+		System.out.println("Connected");
 		
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		while (true)
@@ -49,7 +46,14 @@ public class Main
 			}
 			if (com != null)
 			{
-				com.run();
+				try
+				{
+					com.run();
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
 	}

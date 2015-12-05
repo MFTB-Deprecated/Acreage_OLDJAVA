@@ -2,6 +2,7 @@ package blue.made.acreage.client.net.request;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -23,6 +24,18 @@ public class Request implements IRequest
 	public String name()
 	{
 		return this.name;
+	}
+	
+	public void addData(ByteBuf data)
+	{
+		try
+		{
+			this.data.write(data.array());
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

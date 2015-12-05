@@ -1,11 +1,11 @@
-package blue.made.acreage.client.net;
+package blue.made.acreage.server.net;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import blue.made.acreage.client.net.response.IResponseBuilder;
-import blue.made.acreage.client.net.response.Responses;
+import blue.made.acreage.server.net.request.IRequestBuilder;
+import blue.made.acreage.server.net.request.Requests;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ReplayingDecoder;
@@ -23,11 +23,11 @@ public class NetDecoder extends ReplayingDecoder<Void>
 		String name = in.readBytes(nameSize).toString(charset);
 		size -= nameSize;
 		ByteBuf data = in.readBytes(size);
-		IResponseBuilder build = Responses.builders.get(name);
+		IRequestBuilder build = Requests.builders.get(name);
 		if (build == null)
 		{
-			throw new IOException(String.format("Unknown Response: %s", name));
+			throw new IOException(String.format("Unknown Request: %s", name));
 		}
-		out.add(build.decode(name, data));
+		out.add(build.decode(name, ctx.attr(NetServer.playerKey).get(), data));
 	}
 }

@@ -1,12 +1,13 @@
 package blue.made.acreage.server;
 
-import blue.made.acreage.server.world.Game;
+import blue.made.acreage.server.net.NetServer;
 
 public class Main
 {
 	public static void main(String[] args)
 	{
 		// TODO
-		Game game = new Game();
+		NetServer net = new NetServer();
+		net.start();
 	}
 }
